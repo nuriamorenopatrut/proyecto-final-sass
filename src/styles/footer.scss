@@ -1,0 +1,93 @@
+// =====================================================================
+// _footer.scss
+// Pie (componentes Footer/Desktop y Footer/Mobile del Figma)
+// =====================================================================
+@use "variables" as *;
+@use "mixins" as *;
+
+.site-footer {
+  padding-block: $mobile-section-padding-y $padding-medium;
+  background-color: $color-surface-card;
+  font-size: $font-size-small;
+
+  @include respond-to("large") {
+    padding-top: 64px;
+  }
+
+  &__brand {
+    @include flex(column, flex-start, flex-start, $padding-extra-small);
+
+    p {
+      max-width: 40ch;
+    }
+  }
+
+  &__title {
+    @include eyebrow;
+    margin-bottom: $gap-small;
+  }
+
+  &__list {
+    @include flex(column, flex-start, flex-start, $gap-small);
+
+    a {
+      color: $color-text-body;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-brand-accent;
+      }
+    }
+  }
+
+  &__mail {
+    @include flex(row, flex-start, center, $gap-extra-small);
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $color-icon-default;
+    }
+  }
+
+  &__bottom {
+    @include flex(column, space-between, flex-start, $gap-extra-small);
+    margin-top: $padding-large;
+    padding-top: $padding-medium;
+    border-top: 1px solid $color-border-default;
+    color: $color-text-muted;
+
+    @include respond-to("medium-up") {
+      flex-direction: row;
+    }
+  }
+}
+
+// Redes sociales
+.social {
+  @include flex(row, flex-start, center, $padding-extra-small);
+  margin-top: $gap-extra-small;
+
+  a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-left: -10px;
+    color: $color-icon-default;
+    border-radius: $radius-small;
+    transition:
+      color $transition-base,
+      background-color $transition-base;
+
+    &:hover {
+      color: $color-teal-100;
+      background-color: rgba($color-brand-accent, 0.1);
+    }
+  }
+
+  svg {
+    width: $icon-size-medium;
+    height: $icon-size-medium;
+  }
+}

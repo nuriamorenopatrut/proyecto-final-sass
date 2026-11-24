@@ -1,0 +1,43 @@
+// =====================================================================
+// _home.scss
+// Secciones propias de la página de inicio (index.html)
+// =====================================================================
+@use "variables" as *;
+@use "mixins" as *;
+
+// ---------- Hero ----------
+.hero {
+  &__title {
+    @include heading("title");
+    color: $color-text-title;
+  }
+
+  .lead {
+    margin-top: $padding-small;
+  }
+
+  &__actions {
+    @include flex(column, flex-start, stretch, $gap-small);
+    margin-top: $padding-medium;
+
+    @include respond-to("medium-up") {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    object-fit: cover;
+    border-radius: $radius-large;
+    box-shadow: $shadow-card;
+  }
+
+  // En móvil la foto va primero (orden visual del frame Home · Mobile)
+  &__media {
+    @include respond-to("small") {
+      order: -1;
+    }
+  }
+}

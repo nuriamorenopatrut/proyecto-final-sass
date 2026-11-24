@@ -1,0 +1,74 @@
+// =====================================================================
+// _contact.scss
+// Secciones propias de "Cómo ayudar" (formulario.html)
+// =====================================================================
+@use "variables" as *;
+@use "mixins" as *;
+
+.page-intro {
+  &__title {
+    @include heading("title");
+    color: $color-text-title;
+  }
+
+  .lead + .lead {
+    margin-top: $padding-extra-small;
+  }
+
+  .lead {
+    margin-top: $padding-small;
+  }
+}
+
+// ---------- Lateral del formulario ----------
+.contact-aside {
+  @include flex(column, flex-start, flex-start, $padding-extra-small);
+
+  @include respond-to("large") {
+    position: sticky;
+    top: calc(#{$header-height} + #{$padding-medium});
+    align-self: start;
+  }
+
+  &__mail {
+    @include flex(row, flex-start, center, $gap-extra-small);
+    margin-top: $gap-extra-small;
+
+    svg {
+      width: 22px;
+      height: 22px;
+      color: $color-icon-default;
+    }
+  }
+}
+
+// ---------- Tarjeta del formulario ----------
+.form-card {
+  @include card($padding-large $padding-small);
+  @include flex(column, flex-start, stretch, $gap-medium);
+
+  @include respond-to("medium-up") {
+    padding: $padding-large;
+  }
+
+  // Nombre + correo: 1 columna en móvil, 2 desde tablet
+  &__row {
+    display: grid;
+    gap: $gap-medium;
+
+    @include respond-to("medium-up") {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $desktop-grid-gutter;
+    }
+  }
+
+  &__actions {
+    @include flex(row, flex-end, center, 0);
+
+    @include respond-to("small") {
+      .btn--primary {
+        width: 100%;
+      }
+    }
+  }
+}

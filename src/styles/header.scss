@@ -1,0 +1,185 @@
+// =====================================================================
+// _header.scss
+// Cabecera (componentes Header/Desktop y Header/Mobile del Figma)
+// =====================================================================
+@use "variables" as *;
+@use "mixins" as *;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+  height: $header-height-mobile;
+  background-color: $color-surface-header;
+  transition: box-shadow $transition-base;
+
+  @include respond-to("large") {
+    height: $header-height;
+  }
+
+  // Clase añadida por JS al hacer scroll
+  &.is-scrolled {
+    box-shadow: $shadow-card;
+  }
+
+  &__inner {
+    @include flex(row, space-between, center, $padding-extra-small);
+    height: 100%;
+  }
+}
+
+// ---------- Logo ----------
+.logo {
+  @include flex(row, flex-start, center, $gap-extra-small);
+  color: $color-text-title;
+  font-family: $font-family-title;
+  font-size: 20px;
+  font-weight: $font-weight-semibold;
+  text-decoration: none;
+
+  svg {
+    width: $icon-size-large;
+    height: $icon-size-large;
+    color: $color-icon-default;
+  }
+
+  &:hover {
+    color: $color-text-title;
+  }
+
+  @include respond-to("large") {
+    font-size: 24px;
+  }
+}
+
+// ---------- Botón hamburguesa ----------
+.nav-toggle {
+  @include flex(column, center, center, 5px);
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-small;
+  cursor: pointer;
+
+  &__bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: $color-brand-accent;
+    border-radius: 2px;
+    transition:
+      transform $transition-base,
+      opacity $transition-base;
+  }
+
+  &[aria-expanded="true"] {
+    .nav-toggle__bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle__bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle__bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  @include respond-to("large") {
+    display: none;
+  }
+}
+
+// ---------- Navegación ----------
+.main-nav {
+  // Móvil y tablet: panel desplegable
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: calc(100vh - #{$header-height-mobile});
+  padding: $padding-medium $mobile-grid-margin $padding-large;
+  background-color: $color-surface-background;
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-12px);
+  transition:
+    opacity $transition-base,
+    transform $transition-base,
+    visibility $transition-base;
+
+  &.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @include respond-to("medium") {
+    padding-inline: $tablet-grid-margin;
+  }
+
+  &__list {
+    @include flex(column, flex-start, stretch, 0);
+  }
+
+  // Componente "Nav item" (estados Normal / Activo)
+  &__link {
+    display: block;
+    padding: $padding-extra-small 0;
+    border-bottom: 1px solid $color-border-default;
+    color: $color-text-title;
+    font-family: $font-family-title;
+    font-size: $mobile-size-header-2;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+
+    &:hover,
+    &[aria-current="page"] {
+      color: $color-brand-accent;
+    }
+  }
+
+  &__cta {
+    margin-top: $padding-medium;
+    width: 100%;
+  }
+
+  @include respond-to("large") {
+    @include flex(row, flex-end, center, $padding-medium);
+    position: static;
+    height: auto;
+    padding: 0;
+    background: none;
+    overflow: visible;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+
+    &__list {
+      flex-direction: row;
+      gap: $padding-medium;
+    }
+
+    &__link {
+      padding: $gap-extra-small 0;
+      border: 0;
+      font-size: $font-size-small;
+      font-weight: $font-weight-bold;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    &__cta {
+      margin-top: 0;
+      width: auto;
+    }
+  }
+}
