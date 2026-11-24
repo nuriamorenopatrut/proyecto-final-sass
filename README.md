@@ -1,11 +1,11 @@
 # P3.1 Maquetación responsive con Vite y SASS · Santuario Eden
 
-**Autor:** [Nuria Moreno Patrut]
-**Página publicada:** [https://nuriamorenopatrut.github.io/proyecto-final-sass/](https://nuriamorenopatrut.github.io/proyecto-final-sass/)
-**GitHub:** [https://github.com/nuriamorenopatrut/proyecto-final-sass](https://github.com/nuriamorenopatrut/proyecto-final-sass)
-**Figma:** [Prototipo «Own page»](https://www.figma.com/design/tbZ3oinGVLgqAWJpXQb3MO/Own-page)
+--**Autor:** Nuria Moreno Patrut
+--**Página publicada:** [https://nuriamorenopatrut.github.io/proyecto-final-sass/](https://nuriamorenopatrut.github.io/proyecto-final-sass/)
+--**GitHub:** [https://github.com/nuriamorenopatrut/proyecto-final-sass](https://github.com/nuriamorenopatrut/proyecto-final-sass)
+--**Figma:** [https://www-figma.com/design/tbZ3oinGVLgqAWJpXQb3MO/Own-page](https://www.figma.com/design/tbZ3oinGVLgqAWJpXQb3MO/Own-page)
 
----
+
 
 ## 1. Descripción
 
