@@ -15,7 +15,7 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL("./index.html", import.meta.url)),
         formulario: fileURLToPath(
-          new URL("./formulario.html", import.meta.url),
+          new URL("./src/pages/formulario.html", import.meta.url),
         ),
       },
     },

@@ -43,26 +43,6 @@ const onScroll = () =>
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-// ---------- Aparición de elementos al hacer scroll ----------
-const revealItems = document.querySelectorAll(".reveal");
-
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 },
-  );
-  revealItems.forEach((el) => observer.observe(el));
-} else {
-  revealItems.forEach((el) => el.classList.add("is-visible"));
-}
-
 // ---------- Año actual en el pie ----------
 document.querySelectorAll("[data-year]").forEach((el) => {
   el.textContent = new Date().getFullYear();

@@ -101,6 +101,10 @@ $padding-extra-large: 70px;
 $icon-size-small: 16px;
 $icon-size-medium: 24px;
 $icon-size-large: 32px;
+
+// ---------------------------------------------------------------------
+// 2. DEFINIDAS A MANO
+// ---------------------------------------------------------------------
 $tablet-grid-columns: 8;
 $tablet-grid-margin: 32px;
 $tablet-grid-gutter: 20px;
@@ -109,7 +113,6 @@ $header-height: 80px;
 $header-height-mobile: 64px;
 $measure: 64ch; // ancho cómodo de lectura
 $transition-base: 0.25s ease;
-$transition-slow: 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
 $shadow-card: 0 16px 40px rgba(0, 0, 0, 0.35);
 $z-header: 100;
 
@@ -158,31 +161,14 @@ $grid-config: (
 
 // Estilos de texto: (tamaño móvil, tamaño escritorio, interlineado)
 $heading-sizes: (
-  "title": (
-    $mobile-size-title,
-    $desktop-size-title,
-    1.1,
-  ),
-  "h1": (
-    $mobile-size-header-1,
-    $desktop-size-header-1,
-    1.15,
-  ),
-  "h2": (
-    $mobile-size-header-2,
-    $desktop-size-header-2,
-    1.25,
-  ),
+  "title": ($mobile-size-title, $desktop-size-title, 1.1),
+  "h1": ($mobile-size-header-1, $desktop-size-header-1, 1.15),
+  "h2": ($mobile-size-header-2, $desktop-size-header-2, 1.25),
 );
 
 // Botones: (fondo, texto, fondo hover, fondo pressed)
 $button-variants: (
-  "primary": (
-    $color-button-primary-default,
-    $color-text-on-accent,
-    $color-button-primary-hover,
-    $color-button-primary-pressed,
-  ),
+  "primary": ($color-button-primary-default, $color-text-on-accent, $color-button-primary-hover, $color-button-primary-pressed),
 );
 
 // Separación vertical de secciones
