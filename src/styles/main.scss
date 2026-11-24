@@ -1,0 +1,12 @@
+// =====================================================================
+// main.scss · Punto de entrada de estilos (lo importa main.js)
+// Se usa @use (el antiguo @import está obsoleto en Dart Sass).
+// _variables y _mixins no generan CSS: cada parcial los carga con @use.
+// =====================================================================
+@use "globals";
+@use "layout";
+@use "components";
+@use "header";
+@use "footer";
+@use "home";
+@use "contact";

@@ -1,0 +1,193 @@
+// =====================================================================
+// _variables.scss
+// ---------------------------------------------------------------------
+// 1. Variables exportadas de Figma (colecciones Primitive, Alias y
+//    Responsive del archivo "Own page")
+// 2. Variables definidas a mano (no existen en Figma)
+// 3. Mapas y listas (datos repetidos)
+// =====================================================================
+
+// ---------------------------------------------------------------------
+// 1. EXPORTADAS DE FIGMA
+// ---------------------------------------------------------------------
+
+// ---- Primitive / color (paleta "Océano nocturno") ----
+$color-navy-900: #11192c;
+$color-navy-800: #1c2840;
+$color-navy-700: #213250;
+$color-navy-600: #3d5271;
+$color-navy-400: #5d82ac;
+$color-teal-100: #86eadc;
+$color-teal-300: #51d6c5;
+$color-teal-500: #2fbcae;
+$color-purple-300: #b890d5;
+$color-coral-300: #ff9b8a;
+$color-neutral-0: #f2f5f9;
+$color-neutral-100: #e6ebf1;
+$color-neutral-200: #dfe5ec;
+$color-neutral-300: #ced5de;
+$color-neutral-400: #a2abb9;
+$color-neutral-500: #5b6577;
+
+// ---- Alias (roles de marca) ----
+$color-brand-primary: $color-navy-700;
+$color-brand-secondary: $color-purple-300; // acento secundario (palabras destacadas)
+$color-brand-accent: $color-teal-300;
+$color-surface-background: $color-navy-900;
+$color-surface-card: $color-navy-800;
+$color-surface-header: $color-navy-700;
+$color-text-title: $color-neutral-0;
+$color-text-header-1: $color-neutral-100;
+$color-text-header-2: $color-neutral-200;
+$color-text-body: $color-neutral-300;
+$color-text-muted: $color-neutral-400;
+$color-text-on-accent: $color-navy-900;
+$color-button-primary-default: $color-teal-300;
+$color-button-primary-hover: $color-teal-100;
+$color-button-primary-pressed: $color-teal-500;
+$color-button-primary-disabled: $color-neutral-500;
+$color-icon-default: $color-teal-300;
+$color-border-default: $color-navy-600;
+$color-border-strong: $color-navy-400; // contraste ≥ 3:1 en campos
+$color-error: $color-coral-300;
+
+// ---- Primitive / tipografía ----
+$font-family-title: "Outfit", system-ui, sans-serif;
+$font-family-text: "Inter", system-ui, sans-serif;
+$font-weight-regular: 400; // antes 300: mejor lectura sobre fondo oscuro
+$font-weight-semibold: 500;
+$font-weight-bold: 700;
+$font-size-logo: 25px;
+$font-size-small: 14px;
+
+// ---- Responsive / desktop ----
+$desktop-size-title: 72px;
+$desktop-size-header-1: 48px;
+$desktop-size-header-2: 28px;
+$desktop-size-lead: 18px;
+$desktop-size-text: 16px;
+$desktop-grid-columns: 12;
+$desktop-grid-margin: 70px;
+$desktop-grid-gutter: 20px;
+$desktop-section-padding-y: 80px;
+$desktop-section-gap: 40px;
+
+// ---- Responsive / mobile ----
+$mobile-size-title: 40px;
+$mobile-size-header-1: 32px;
+$mobile-size-header-2: 24px;
+$mobile-size-lead: 17px;
+$mobile-size-text: 16px;
+$mobile-grid-columns: 4;
+$mobile-grid-margin: 20px;
+$mobile-grid-gutter: 16px;
+$mobile-section-padding-y: 48px;
+$mobile-section-gap: 24px;
+
+// ---- Layout ----
+$radius-small: 12px;
+$radius-medium: 16px;
+$radius-large: 32px;
+$gap-extra-small: 10px;
+$gap-small: 15px;
+$gap-medium: 25px;
+$gap-large: 35px;
+$gap-extra-large: 55px;
+$padding-extra-small: 16px;
+$padding-small: 20px;
+$padding-medium: 30px;
+$padding-large: 40px;
+$padding-extra-large: 70px;
+$icon-size-small: 16px;
+$icon-size-medium: 24px;
+$icon-size-large: 32px;
+$tablet-grid-columns: 8;
+$tablet-grid-margin: 32px;
+$tablet-grid-gutter: 20px;
+$container-max: 1300px; // 1440 (frame) - 2 × 70 (márgenes)
+$header-height: 80px;
+$header-height-mobile: 64px;
+$measure: 64ch; // ancho cómodo de lectura
+$transition-base: 0.25s ease;
+$transition-slow: 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+$shadow-card: 0 16px 40px rgba(0, 0, 0, 0.35);
+$z-header: 100;
+
+// ---------------------------------------------------------------------
+// 3. MAPAS Y LISTAS
+// ---------------------------------------------------------------------
+
+// Puntos de corte (frames de Figma: 390 / 834 / 1440)
+$breakpoints: (
+  "small": (
+    max-width: 599px,
+  ),
+  "medium": (
+    min-width: 600px,
+    max-width: 1199px,
+  ),
+  "medium-up": (
+    min-width: 600px,
+  ),
+  "large": (
+    min-width: 1200px,
+  ),
+);
+
+// Rejilla por punto de corte
+$grid-config: (
+  "small": (
+    prefix: "sm",
+    columns: $mobile-grid-columns,
+    gutter: $mobile-grid-gutter,
+    margin: $mobile-grid-margin,
+  ),
+  "medium": (
+    prefix: "md",
+    columns: $tablet-grid-columns,
+    gutter: $tablet-grid-gutter,
+    margin: $tablet-grid-margin,
+  ),
+  "large": (
+    prefix: "lg",
+    columns: $desktop-grid-columns,
+    gutter: $desktop-grid-gutter,
+    margin: $desktop-grid-margin,
+  ),
+);
+
+// Estilos de texto: (tamaño móvil, tamaño escritorio, interlineado)
+$heading-sizes: (
+  "title": (
+    $mobile-size-title,
+    $desktop-size-title,
+    1.1,
+  ),
+  "h1": (
+    $mobile-size-header-1,
+    $desktop-size-header-1,
+    1.15,
+  ),
+  "h2": (
+    $mobile-size-header-2,
+    $desktop-size-header-2,
+    1.25,
+  ),
+);
+
+// Botones: (fondo, texto, fondo hover, fondo pressed)
+$button-variants: (
+  "primary": (
+    $color-button-primary-default,
+    $color-text-on-accent,
+    $color-button-primary-hover,
+    $color-button-primary-pressed,
+  ),
+);
+
+// Separación vertical de secciones
+$section-spacing: (
+  "small": $mobile-section-padding-y,
+  "medium": 64px,
+  "large": $desktop-section-padding-y,
+);

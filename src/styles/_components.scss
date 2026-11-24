@@ -1,0 +1,305 @@
+// =====================================================================
+// _components.scss
+// Botones, tarjetas, campos de formulario y animaciones
+// (componentes Button, Button secondary, Card animal, Input del Figma)
+// =====================================================================
+@use "sass:list";
+@use "variables" as *;
+@use "mixins" as *;
+
+// ---------------------------------------------------------------------
+// Botones
+// ---------------------------------------------------------------------
+// Variantes rellenas generadas desde el mapa $button-variants
+@each $name, $values in $button-variants {
+  .btn--#{$name} {
+    @include button(
+      list.nth($values, 1),
+      list.nth($values, 2),
+      list.nth($values, 3),
+      list.nth($values, 4)
+    );
+  }
+}
+
+// "Button secondary": borde morado → hover turquesa → pressed relleno oscuro
+.btn--secondary {
+  @include button(transparent, $color-text-title, transparent, $color-surface-card, $color-border-default);
+
+  &:hover {
+    border-color: $color-brand-accent;
+    color: $color-brand-accent;
+  }
+
+  &:active {
+    border-color: $color-brand-accent;
+    color: $color-brand-accent;
+  }
+}
+
+.btn__icon {
+  width: 20px;
+  height: 20px;
+}
+
+// ---------------------------------------------------------------------
+// Tarjeta de cifra
+// ---------------------------------------------------------------------
+.stat-card {
+  @include card($padding-medium);
+  @include flex(row, flex-start, center, $padding-small);
+  height: 100%;
+
+  &__icon {
+    @include icon-box;
+  }
+
+  strong {
+    display: block;
+    color: $color-text-title;
+    font-family: $font-family-title;
+    font-size: $mobile-size-header-1;
+    line-height: 1.1;
+
+    @include respond-to("large") {
+      font-size: $desktop-size-header-1;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------
+// Card animal
+// ---------------------------------------------------------------------
+.animal-card {
+  @include card($padding-small);
+  @include flex(column, flex-start, flex-start, $gap-small);
+  height: 100%;
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-card;
+  }
+
+  &__img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: $radius-medium;
+  }
+
+  h3 {
+    margin-top: $gap-extra-small;
+    color: $color-text-header-2;
+  }
+
+  p {
+    font-size: $font-size-small;
+  }
+
+  &__link {
+    margin-top: auto;
+    padding-top: $gap-extra-small;
+    font-family: $font-family-title;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------
+// Tarjeta "forma de ayuda"
+// ---------------------------------------------------------------------
+.help-card {
+  @include card($padding-medium);
+  @include flex(column, flex-start, flex-start, $padding-extra-small);
+  height: 100%;
+
+  @include respond-to("large") {
+    padding: $padding-large $padding-medium;
+  }
+
+  &__icon {
+    @include icon-box;
+  }
+
+  h3 {
+    color: $color-text-header-1;
+  }
+}
+
+// ---------------------------------------------------------------------
+// Banda de llamada a la acción
+// ---------------------------------------------------------------------
+.cta-band {
+  @include card($padding-large $padding-small);
+  @include flex(column, flex-start, flex-start, $gap-medium);
+  border: 1px solid $color-brand-accent;
+
+  @include respond-to("medium-up") {
+    padding: $padding-large;
+  }
+
+  @include respond-to("large") {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 56px 64px;
+  }
+
+  h2 {
+    max-width: 18ch;
+  }
+
+  p {
+    margin-top: $gap-extra-small;
+  }
+}
+
+// ---------------------------------------------------------------------
+// Campos de formulario (Input, Select, Textarea, Checkbox)
+// ---------------------------------------------------------------------
+.field {
+  @include flex(column, flex-start, stretch, 8px);
+
+  &__label {
+    color: $color-text-header-2;
+    font-size: $font-size-small;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 52px;
+    padding: 14px $padding-extra-small;
+    background-color: $color-surface-background;
+    border: 1px solid $color-border-strong;
+    border-radius: $radius-small;
+    color: $color-text-title;
+    transition:
+      border-color $transition-base,
+      box-shadow $transition-base;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    // Estado "focus" del componente Input
+    &:focus {
+      outline: none;
+      border-color: $color-brand-accent;
+      box-shadow: 0 0 0 3px rgba($color-brand-accent, 0.25);
+    }
+  }
+
+  textarea.field__input {
+    min-height: 140px;
+    resize: vertical;
+  }
+
+  select.field__input {
+    appearance: none;
+    padding-right: 48px;
+    background-image: linear-gradient(45deg, transparent 50%, $color-brand-accent 50%),
+      linear-gradient(135deg, $color-brand-accent 50%, transparent 50%);
+    background-position:
+      calc(100% - 24px) 50%,
+      calc(100% - 18px) 50%;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+  }
+
+  &__error {
+    display: none;
+    color: $color-error;
+    font-size: 13px;
+
+    &::before {
+      content: "⚠ ";
+    }
+  }
+
+  // Estado de error (lo añade main.js)
+  &.has-error {
+    .field__input {
+      border-color: $color-error;
+    }
+
+    .field__error {
+      display: block;
+    }
+  }
+}
+
+.checkbox {
+  @include flex(row, flex-start, flex-start, 12px);
+  font-size: $font-size-small;
+  cursor: pointer;
+
+  input {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    accent-color: $color-brand-accent;
+  }
+}
+
+.alert {
+  @include flex(row, flex-start, flex-start, 12px);
+  display: none;
+  padding: $padding-extra-small $padding-small;
+  border: 1px solid $color-brand-accent;
+  border-radius: $radius-small;
+  background-color: rgba($color-brand-accent, 0.1);
+  color: $color-text-title;
+
+  &.is-visible {
+    display: flex;
+    animation: pop-in 0.4s ease;
+  }
+}
+
+// ---------------------------------------------------------------------
+// Animaciones
+// ---------------------------------------------------------------------
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity $transition-slow,
+    transform $transition-slow;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

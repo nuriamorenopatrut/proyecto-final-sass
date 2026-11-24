@@ -1,0 +1,104 @@
+// =====================================================================
+// _layout.scss
+// Estructura general: contenedor, rejilla de columnas (12 / 8 / 4)
+// y secciones. Traslada a CSS los "Layout grids" de Figma.
+// =====================================================================
+@use "sass:map";
+@use "variables" as *;
+@use "mixins" as *;
+
+// ---------- Estructura de página ----------
+// La cabecera es "sticky", así que el contenido no necesita margen superior
+.site-main {
+  flex: 1;
+}
+
+// ---------- Contenedor ----------
+.container {
+  width: 100%;
+  max-width: $container-max + $desktop-grid-margin * 2;
+  margin-inline: auto;
+}
+
+// ---------- Rejilla ----------
+// Por defecto cada hijo ocupa toda la fila; las clases .col-{bp}-{n}
+// indican cuántas columnas ocupa en cada punto de corte.
+.grid {
+  display: grid;
+  row-gap: $mobile-grid-gutter;
+
+  > * {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  &--center {
+    align-items: center;
+  }
+
+  &--gap-lg {
+    row-gap: $desktop-section-gap;
+  }
+}
+
+// Genera márgenes, columnas, gutters y clases .col-sm-*, .col-md-*, .col-lg-*
+@each $bp, $config in $grid-config {
+  $prefix: map.get($config, prefix);
+  $columns: map.get($config, columns);
+
+  @include respond-to($bp) {
+    .container {
+      padding-inline: map.get($config, margin);
+    }
+
+    .grid {
+      grid-template-columns: repeat($columns, minmax(0, 1fr));
+      column-gap: map.get($config, gutter);
+    }
+
+    @for $i from 1 through $columns {
+      // "auto / span n": el span va en el final, así .start-* puede fijar el inicio
+      .grid > .col-#{$prefix}-#{$i} {
+        grid-column: auto / span $i;
+      }
+    }
+
+    // Columna de inicio (después de las .col para que no la pisen)
+    @for $i from 1 through $columns {
+      .grid > .start-#{$prefix}-#{$i} {
+        grid-column-start: $i;
+      }
+    }
+  }
+}
+
+// ---------- Secciones ----------
+// El espaciado vertical sale del mapa $section-spacing
+.section {
+  @each $bp, $space in $section-spacing {
+    @include respond-to($bp) {
+      padding-block: $space;
+    }
+  }
+
+  &--flush-top {
+    padding-top: 0 !important;
+  }
+
+  &--tint {
+    background-color: rgba($color-surface-card, 0.35);
+  }
+}
+
+.section-heading {
+  max-width: 860px;
+  margin-bottom: $mobile-section-gap;
+
+  @include respond-to("large") {
+    margin-bottom: $desktop-section-gap;
+  }
+
+  .lead {
+    margin-top: $gap-small;
+  }
+}

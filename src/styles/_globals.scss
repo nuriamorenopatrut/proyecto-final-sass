@@ -1,0 +1,155 @@
+// =====================================================================
+// _globals.scss
+// Reset, estilos base de etiquetas y utilidades globales
+// =====================================================================
+@use "variables" as *;
+@use "mixins" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: $header-height;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-surface-background;
+  color: $color-text-body;
+  font-family: $font-family-text;
+  font-size: $desktop-size-text;
+  font-weight: $font-weight-regular;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+
+  // Bloquea el scroll con el menú móvil abierto
+  &.menu-open {
+    overflow: hidden;
+
+    @include respond-to("large") {
+      overflow: auto;
+    }
+  }
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  color: $color-text-header-1;
+  text-wrap: balance;
+}
+
+h1 {
+  @include heading("h1");
+}
+
+h2 {
+  @include heading("h1");
+}
+
+h3 {
+  @include heading("h2");
+  font-weight: $font-weight-semibold;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: $color-brand-accent;
+  text-underline-offset: 0.2em;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $color-teal-100;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+ul[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+::selection {
+  background-color: $color-brand-accent;
+  color: $color-text-on-accent;
+}
+
+// ---------- Utilidades ----------
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.skip-link {
+  position: absolute;
+  left: $padding-extra-small;
+  top: -100px;
+  z-index: $z-header + 1;
+  @include button($color-brand-accent, $color-text-on-accent);
+
+  &:focus {
+    top: $padding-extra-small;
+  }
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: $padding-extra-small;
+}
+
+// Palabra destacada en títulos (acento secundario morado)
+.highlight {
+  color: $color-brand-secondary;
+}
+
+.lead {
+  max-width: $measure;
+  font-size: $mobile-size-lead;
+
+  @include respond-to("large") {
+    font-size: $desktop-size-lead;
+  }
+}
+
+// ---------- Movimiento reducido ----------
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
